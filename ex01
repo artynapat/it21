@@ -1,0 +1,18 @@
+<?php
+    include 'connection.php'; // ติดต่อฐานข้อมูล
+
+    $std_id = $_POST['std_id']; // รับค่ารหัสนักศึกษาจากการกด submit form
+    date_default_timezone_set('Asia/Bangkok');
+    $ch_date =  date("Y-m-d"); // กำหนดค่าวันที่
+    $ch_time =  date("G:i:s"); // กำหนดค่าเวลา
+
+    $sql = "INSERT INTO spd_checking(std_id, ch_date, ch_time) VALUES('".$std_id."', '".$ch_date."', '".$ch_time."')"; // คำสั่ง SQL ที่ใช้ในการเพิ่มลงฐานข้อมูล
+
+    if (mysqli_query($conn, $sql)) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    mysqli_close($conn);
+?>
